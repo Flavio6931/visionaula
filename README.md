@@ -50,7 +50,8 @@ visionaula/
 ├── vision/          Módulo de procesamiento con OpenCV
 ├── templates/       Plantillas generales (base y login)
 ├── modelos/         Modelos de OpenCV (se descargan con un comando)
-├── docs/            Casos de prueba y capturas
+├── tests/           Pruebas automatizadas (unitarias, integración, funcionales, E2E)
+├── docs/            Documentación técnica, manual de usuario y reportes de pruebas
 ├── manage.py
 └── requirements.txt
 ```
@@ -60,7 +61,7 @@ visionaula/
 1. Clonar el repositorio:
 
    ```bash
-   git clone https://github.com/JulioVera18/visionaula.git
+   git clone https://github.com/Flavio6931/visionaula.git
    cd visionaula
    ```
 
@@ -126,5 +127,26 @@ visionaula/
 
 ## Pruebas
 
-Los casos de prueba realizados se encuentran en el archivo
-[docs/CASOS_DE_PRUEBA.md](docs/CASOS_DE_PRUEBA.md).
+El proyecto tiene **132 pruebas automatizadas** (todas aprobadas, **99 % de cobertura**):
+
+| Tipo | Archivos | Cantidad |
+|---|---|---|
+| Unitarias (módulo OpenCV, cédula, modelos) | `tests/test_vision_unit.py`, `test_vision_models.py`, `test_validators.py`, `test_model_store.py` | 67 |
+| Integración (rutas, API y base de datos de Django) | `tests/test_django.py`, `test_regresiones.py` | 48 |
+| Funcionales (casos de uso con OpenCV real) | `tests/test_funcionales.py` | 15 |
+| E2E (Chrome real con cámara simulada) | `tests/test_e2e_interfaz.py` | 2 |
+
+```bash
+pip install -r requirements-dev.txt
+pytest --cov=vision --cov=asistencia --cov-report=term-missing
+```
+
+- Reporte de pruebas: [docs/pruebas/REPORTE_PRUEBAS.md](docs/pruebas/REPORTE_PRUEBAS.md)
+  (log: [reporte_pruebas.log](docs/pruebas/reporte_pruebas.log), capturas: [docs/pruebas/capturas](docs/pruebas/capturas))
+- Casos de prueba manuales con cámara real: [docs/CASOS_DE_PRUEBA.md](docs/CASOS_DE_PRUEBA.md)
+
+## Documentación
+
+- [Documentación técnica](docs/DOCUMENTACION_TECNICA.md): requisitos, instalación, ejecución,
+  estructura de directorios, arquitectura, API y pruebas.
+- [Manual de usuario](docs/MANUAL_USUARIO.md): pasos de uso con capturas y explicación de resultados.

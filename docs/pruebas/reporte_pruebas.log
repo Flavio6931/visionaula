@@ -1,0 +1,551 @@
+VisionAula - Reporte de ejecución de pruebas automatizadas
+Fecha: 2026-11-17 11:30:36 -0500
+Entorno: Windows 11 · Python 3.14.7 · Django 6.1.3 · OpenCV 5.0.0 · Playwright 1.65.2 + Google Chrome 157
+Comando: pytest -v -rA --durations=10 --cov=vision --cov=asistencia --cov-report=term-missing --junitxml=docs/pruebas/resultados_junit.xml
+================================================================================
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0 -- venv\Scripts\python.exe
+django: version: 6.1.3, settings: config.settings (from ini)
+rootdir: .
+configfile: pytest.ini
+testpaths: tests
+plugins: cov-7.1.0, django-4.14.0
+collecting ... collected 132 items
+
+tests/test_django.py::test_pages_require_login[asistencia:dashboard] PASSED [  0%]
+tests/test_django.py::test_pages_require_login[asistencia:monitor] PASSED [  1%]
+tests/test_django.py::test_pages_require_login[asistencia:estudiantes] PASSED [  2%]
+tests/test_django.py::test_pages_require_login[asistencia:sesiones] PASSED [  3%]
+tests/test_django.py::test_api_returns_401_json_when_not_logged_in PASSED [  3%]
+tests/test_django.py::test_login_page_renders PASSED                     [  4%]
+tests/test_django.py::test_pages_render_for_logged_user[asistencia:dashboard] PASSED [  5%]
+tests/test_django.py::test_pages_render_for_logged_user[asistencia:monitor] PASSED [  6%]
+tests/test_django.py::test_pages_render_for_logged_user[asistencia:estudiantes] PASSED [  6%]
+tests/test_django.py::test_pages_render_for_logged_user[asistencia:sesiones] PASSED [  7%]
+tests/test_django.py::test_pages_render_for_logged_user[asistencia:estudiante_nuevo] PASSED [  8%]
+tests/test_django.py::test_monitor_uses_active_session PASSED            [  9%]
+tests/test_django.py::test_create_student_normalizes_data_and_redirects_to_enrollment PASSED [  9%]
+tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[x; DROP-10 d\xedgitos] PASSED [ 10%]
+tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[091234567-10 d\xedgitos] PASSED [ 11%]
+tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[0912345678-d\xedgito verificador] PASSED [ 12%]
+tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[2510034065-provincia] PASSED [ 12%]
+tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[1770034065-tercer d\xedgito] PASSED [ 13%]
+tests/test_django.py::test_create_student_rejects_duplicate_id PASSED    [ 14%]
+tests/test_django.py::test_student_search_filters_list PASSED            [ 15%]
+tests/test_django.py::test_update_and_delete_student PASSED              [ 15%]
+tests/test_django.py::test_delete_requires_post PASSED                   [ 16%]
+tests/test_django.py::test_register_sample_stores_embedding_and_image PASSED [ 17%]
+tests/test_django.py::test_register_sample_rejects_photo_without_face PASSED [ 18%]
+tests/test_django.py::test_register_sample_enforces_limit PASSED         [ 18%]
+tests/test_django.py::test_delete_sample PASSED                          [ 19%]
+tests/test_django.py::test_process_frame_returns_annotated_image_and_faces PASSED [ 20%]
+tests/test_django.py::test_process_frame_without_image_returns_only_face_data PASSED [ 21%]
+tests/test_django.py::test_attendance_registered_after_three_consecutive_recognitions PASSED [ 21%]
+tests/test_django.py::test_no_attendance_without_session_or_in_closed_session PASSED [ 22%]
+tests/test_django.py::test_process_frame_rejects_invalid_image PASSED    [ 23%]
+tests/test_django.py::test_process_frame_requires_frame_field PASSED     [ 24%]
+tests/test_django.py::test_process_frame_rejects_non_numeric_session PASSED [ 25%]
+tests/test_django.py::test_process_frame_returns_503_when_models_missing PASSED [ 25%]
+tests/test_django.py::test_process_frame_hides_internal_errors PASSED    [ 26%]
+tests/test_django.py::test_create_session_redirects_to_monitor PASSED    [ 27%]
+tests/test_django.py::test_only_one_active_session_allowed PASSED        [ 28%]
+tests/test_django.py::test_close_session_and_detail_stats PASSED         [ 28%]
+tests/test_django.py::test_csv_export_marks_present_and_absent_and_escapes_formulas PASSED [ 29%]
+tests/test_django.py::test_gallery_cache_reloads_when_samples_change PASSED [ 30%]
+tests/test_django.py::test_pages_version_js_modules_and_css_to_avoid_stale_cache PASSED [ 31%]
+tests/test_funcionales.py::test_cu01_docente_inicia_sesion_y_ve_el_panel PASSED [ 31%]
+tests/test_funcionales.py::test_cu01_credenciales_incorrectas_no_permiten_ingresar PASSED [ 32%]
+tests/test_funcionales.py::test_cu02_registrar_estudiante_y_sus_fotos PASSED [ 33%]
+tests/test_funcionales.py::test_cu02_rechaza_fotos_sin_rostro_o_con_dos_personas PASSED [ 34%]
+tests/test_funcionales.py::test_cu03_detecta_y_reconoce_en_cada_fotograma_del_video PASSED [ 34%]
+tests/test_funcionales.py::test_cu03_galeria_vacia_avisa_que_no_hay_estudiantes PASSED [ 35%]
+tests/test_funcionales.py::test_cu04_registra_asistencia_solo_del_estudiante_registrado PASSED [ 36%]
+tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[normal] PASSED [ 37%]
+tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[gris] PASSED [ 37%]
+tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[bordes] PASSED [ 38%]
+tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[termico] PASSED [ 39%]
+tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[clahe] PASSED [ 40%]
+tests/test_funcionales.py::test_cu05_el_rostro_no_registrado_se_pixela_y_el_registrado_no PASSED [ 40%]
+tests/test_funcionales.py::test_cu05_con_poca_luz_aplica_clahe_y_sigue_reconociendo PASSED [ 41%]
+tests/test_funcionales.py::test_cu06_cerrar_sesion_y_obtener_reporte PASSED [ 42%]
+tests/test_regresiones.py::test_attendance_retried_after_transient_failure PASSED [ 43%]
+tests/test_regresiones.py::test_gallery_notices_activation_swap_and_name_change PASSED [ 43%]
+tests/test_regresiones.py::test_deleting_student_removes_biometric_files PASSED [ 44%]
+tests/test_regresiones.py::test_database_allows_only_one_active_session PASSED [ 45%]
+tests/test_regresiones.py::test_closing_session_forgets_tracker_streaks PASSED [ 46%]
+tests/test_regresiones.py::test_singleton_is_created_once_under_concurrency PASSED [ 46%]
+tests/test_regresiones.py::test_frame_helper_is_reusable PASSED          [ 47%]
+tests/test_e2e_interfaz.py::test_e2e_rutas_protegidas_redirigen_al_login PASSED [ 48%]
+tests/test_e2e_interfaz.py::test_e2e_flujo_completo_del_docente PASSED   [ 49%]
+tests/test_model_store.py::test_sha256_of_matches_hashlib PASSED         [ 50%]
+tests/test_model_store.py::test_download_installs_model_when_hash_matches PASSED [ 50%]
+tests/test_model_store.py::test_download_rejects_tampered_file_and_cleans_up PASSED [ 51%]
+tests/test_model_store.py::test_download_reports_network_errors PASSED   [ 52%]
+tests/test_model_store.py::test_corrupt_or_missing_model_is_not_valid PASSED [ 53%]
+tests/test_model_store.py::test_require_model_returns_existing_path PASSED [ 53%]
+tests/test_model_store.py::test_command_skips_models_already_installed PASSED [ 54%]
+tests/test_model_store.py::test_command_downloads_missing_models PASSED  [ 55%]
+tests/test_model_store.py::test_command_fails_with_clear_message PASSED  [ 56%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[1710034065] PASSED [ 56%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[0912345675] PASSED [ 57%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[0102030400] PASSED [ 58%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[2401234568] PASSED [ 59%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[3001234560] PASSED [ 59%]
+tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[ 091234567-5 ] PASSED [ 60%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[-longitud] PASSED [ 61%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[123-longitud] PASSED [ 62%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[17100340651-longitud] PASSED [ 62%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[17100340AB-longitud] PASSED [ 63%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[\u0661\u0667\u0661\u0660\u0660\u0663\u0664\u0660\u0666\u0665-longitud] PASSED [ 64%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[0010034065-provincia] PASSED [ 65%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[2510034065-provincia] PASSED [ 65%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[2910034065-provincia] PASSED [ 66%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[1760034065-tercer_digito] PASSED [ 67%]
+tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[1710034064-verificador] PASSED [ 68%]
+tests/test_validators.py::test_check_digit_algorithm PASSED              [ 68%]
+tests/test_validators.py::test_normalization_removes_spaces_and_hyphens PASSED [ 69%]
+tests/test_vision_models.py::test_downloaded_models_match_sha256 PASSED  [ 70%]
+tests/test_vision_models.py::test_blank_frame_has_no_faces PASSED        [ 71%]
+tests/test_vision_models.py::test_enrollment_without_face_is_rejected PASSED [ 71%]
+tests/test_vision_models.py::test_sface_produces_normalized_128d_embedding PASSED [ 72%]
+tests/test_vision_models.py::test_require_model_reports_missing_file PASSED [ 73%]
+tests/test_vision_models.py::test_yunet_detects_single_face_with_five_landmarks PASSED [ 74%]
+tests/test_vision_models.py::test_yunet_sorts_faces_from_largest_to_smallest PASSED [ 75%]
+tests/test_vision_models.py::test_min_face_size_discards_distant_faces PASSED [ 75%]
+tests/test_vision_models.py::test_sface_distinguishes_same_person_from_another PASSED [ 76%]
+tests/test_vision_unit.py::test_decode_valid_jpeg_returns_bgr_matrix PASSED [ 77%]
+tests/test_vision_unit.py::test_decode_rejects_empty_or_corrupt_data[] PASSED [ 78%]
+tests/test_vision_unit.py::test_decode_rejects_empty_or_corrupt_data[no-es-una-imagen] PASSED [ 78%]
+tests/test_vision_unit.py::test_decode_rejects_oversized_payload PASSED  [ 79%]
+tests/test_vision_unit.py::test_data_url_has_jpeg_prefix PASSED          [ 80%]
+tests/test_vision_unit.py::test_dark_image_is_detected_as_low_light_and_enhanced PASSED [ 81%]
+tests/test_vision_unit.py::test_resize_keeps_small_images_and_shrinks_large_ones PASSED [ 81%]
+tests/test_vision_unit.py::test_blurry_face_fails_quality_check PASSED   [ 82%]
+tests/test_vision_unit.py::test_sharp_well_lit_face_passes_quality_check PASSED [ 83%]
+tests/test_vision_unit.py::test_dark_face_fails_quality_check PASSED     [ 84%]
+tests/test_vision_unit.py::test_empty_face_fails_quality_check PASSED    [ 84%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[normal] PASSED [ 85%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[clahe] PASSED [ 86%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[gris] PASSED [ 87%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[bordes] PASSED [ 87%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[termico] PASSED [ 88%]
+tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[inexistente] PASSED [ 89%]
+tests/test_vision_unit.py::test_match_returns_unknown_for_empty_gallery PASSED [ 90%]
+tests/test_vision_unit.py::test_match_finds_closest_identity_above_threshold PASSED [ 90%]
+tests/test_vision_unit.py::test_match_rejects_stranger_below_threshold PASSED [ 91%]
+tests/test_vision_unit.py::test_embedding_bytes_roundtrip PASSED         [ 92%]
+tests/test_vision_unit.py::test_from_bytes_rejects_wrong_dimension PASSED [ 93%]
+tests/test_vision_unit.py::test_crop_stays_inside_image PASSED           [ 93%]
+tests/test_vision_unit.py::test_detection_row_is_clipped_to_frame PASSED [ 94%]
+tests/test_vision_unit.py::test_render_draws_annotations_and_pixelates_unknown_faces PASSED [ 95%]
+tests/test_vision_unit.py::test_ascii_label_replaces_accents PASSED      [ 96%]
+tests/test_vision_unit.py::test_tracker_confirms_after_required_consecutive_hits PASSED [ 96%]
+tests/test_vision_unit.py::test_tracker_resets_streak_after_window_expires PASSED [ 97%]
+tests/test_vision_unit.py::test_tracker_keeps_sessions_independent_and_can_forget PASSED [ 98%]
+tests/test_vision_unit.py::test_tracker_rejects_invalid_configuration PASSED [ 99%]
+tests/test_vision_unit.py::test_unknown_faces_are_always_pixelated_and_known_faces_stay_visible PASSED [100%]
+
+=================================== PASSES ====================================
+_______________ test_pages_require_login[asistencia:dashboard] ________________
+---------------------------- Captured stderr setup ----------------------------
+Creating test database for alias 'default'...
+
+________________ test_api_returns_401_json_when_not_logged_in _________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Unauthorized: /api/procesar/
+__________________________ test_delete_requires_post __________________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Method Not Allowed (GET): /estudiantes/1/eliminar/
+_______________ test_register_sample_rejects_photo_without_face _______________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Unprocessable Content: /api/estudiantes/1/muestras/
+_____________________ test_register_sample_enforces_limit _____________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Unprocessable Content: /api/estudiantes/1/muestras/
+____________ test_process_frame_returns_annotated_image_and_faces _____________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+___________ test_process_frame_without_image_returns_only_face_data ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+_______ test_attendance_registered_after_three_consecutive_recognitions _______
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 1 muestras
+[INFO] asistencia.services: Asistencia registrada: estudiante=1 sesion=1
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=1 sesion=1
+___________ test_no_attendance_without_session_or_in_closed_session ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+__________________ test_process_frame_rejects_invalid_image ___________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Bad Request: /api/procesar/
+___________________ test_process_frame_requires_frame_field ___________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Bad Request: /api/procesar/
+_______________ test_process_frame_rejects_non_numeric_session ________________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Bad Request: /api/procesar/
+_____________ test_process_frame_returns_503_when_models_missing ______________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+[ERROR] asistencia.api: Modelo no disponible: Ejecute: python manage.py descargar_modelos
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+ERROR    asistencia.api:api.py:46 Modelo no disponible: Ejecute: python manage.py descargar_modelos
+ERROR    django.request:log.py:283 Service Unavailable: /api/procesar/
+__________________ test_process_frame_hides_internal_errors ___________________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+[ERROR] asistencia.api: Error inesperado en procesar_frame
+Traceback (most recent call last):
+  File "asistencia\api.py", line 40, in wrapper
+    return func(request, *args, **kwargs)
+  File "asistencia\api.py", line 83, in procesar_frame
+    return json_ok(services.procesar_frame(frame_request))
+                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "asistencia\services.py", line 219, in procesar_frame
+    analysis = get_engine().analyze(image, gallery, settings.VISION["MATCH_THRESHOLD"])
+               ~~~~~~~~~~^^
+  File "tests\test_django.py", line 258, in falla
+    raise RuntimeError("detalle interno secreto")
+RuntimeError: detalle interno secreto
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+ERROR    asistencia.api:api.py:49 Error inesperado en procesar_frame
+Traceback (most recent call last):
+  File "asistencia\api.py", line 40, in wrapper
+    return func(request, *args, **kwargs)
+  File "asistencia\api.py", line 83, in procesar_frame
+    return json_ok(services.procesar_frame(frame_request))
+                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "asistencia\services.py", line 219, in procesar_frame
+    analysis = get_engine().analyze(image, gallery, settings.VISION["MATCH_THRESHOLD"])
+               ~~~~~~~~~~^^
+  File "tests\test_django.py", line 258, in falla
+    raise RuntimeError("detalle interno secreto")
+RuntimeError: detalle interno secreto
+ERROR    django.request:log.py:283 Internal Server Error: /api/procesar/
+_______________ test_gallery_cache_reloads_when_samples_change ________________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+[INFO] asistencia.services: Galería recargada: 1 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+____________ test_cu02_rechaza_fotos_sin_rostro_o_con_dos_personas ____________
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Unprocessable Content: /api/estudiantes/1/muestras/
+WARNING  django.request:log.py:283 Unprocessable Content: /api/estudiantes/1/muestras/
+__________ test_cu03_detecta_y_reconoce_en_cada_fotograma_del_video ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+____________ test_cu03_galeria_vacia_avisa_que_no_hay_estudiantes _____________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+________ test_cu04_registra_asistencia_solo_del_estudiante_registrado _________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+[INFO] asistencia.services: Asistencia registrada: estudiante=1 sesion=1
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=1 sesion=1
+__________ test_cu05_cada_filtro_devuelve_el_video_procesado[normal] __________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+___________ test_cu05_cada_filtro_devuelve_el_video_procesado[gris] ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+__________ test_cu05_cada_filtro_devuelve_el_video_procesado[bordes] __________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+_________ test_cu05_cada_filtro_devuelve_el_video_procesado[termico] __________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+__________ test_cu05_cada_filtro_devuelve_el_video_procesado[clahe] ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+_______ test_cu05_el_rostro_no_registrado_se_pixela_y_el_registrado_no ________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+__________ test_cu05_con_poca_luz_aplica_clahe_y_sigue_reconociendo ___________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+__________________ test_cu06_cerrar_sesion_y_obtener_reporte __________________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+[INFO] asistencia.services: Asistencia registrada: estudiante=1 sesion=1
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=1 sesion=1
+_______________ test_attendance_retried_after_transient_failure _______________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 0 muestras
+[ERROR] asistencia.api: Error inesperado en procesar_frame
+Traceback (most recent call last):
+  File "asistencia\api.py", line 40, in wrapper
+    return func(request, *args, **kwargs)
+  File "asistencia\api.py", line 83, in procesar_frame
+    return json_ok(services.procesar_frame(frame_request))
+                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "asistencia\services.py", line 221, in procesar_frame
+    nuevas = _actualizar_asistencias(request.sesion, analysis, confirmados)
+  File "asistencia\services.py", line 182, in _actualizar_asistencias
+    asistencia = _registrar_asistencia(sesion, face)
+  File "tests\test_regresiones.py", line 29, in falla_una_vez
+    raise OSError("disco lleno")
+OSError: disco lleno
+[INFO] asistencia.services: Asistencia registrada: estudiante=1 sesion=1
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 0 muestras
+ERROR    asistencia.api:api.py:49 Error inesperado en procesar_frame
+Traceback (most recent call last):
+  File "asistencia\api.py", line 40, in wrapper
+    return func(request, *args, **kwargs)
+  File "asistencia\api.py", line 83, in procesar_frame
+    return json_ok(services.procesar_frame(frame_request))
+                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "asistencia\services.py", line 221, in procesar_frame
+    nuevas = _actualizar_asistencias(request.sesion, analysis, confirmados)
+  File "asistencia\services.py", line 182, in _actualizar_asistencias
+    asistencia = _registrar_asistencia(sesion, face)
+  File "tests\test_regresiones.py", line 29, in falla_una_vez
+    raise OSError("disco lleno")
+OSError: disco lleno
+ERROR    django.request:log.py:283 Internal Server Error: /api/procesar/
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=1 sesion=1
+____________ test_gallery_notices_activation_swap_and_name_change _____________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 1 muestras
+[INFO] asistencia.services: Galería recargada: 1 muestras
+[INFO] asistencia.services: Galería recargada: 1 muestras
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+________________ test_deleting_student_removes_biometric_files ________________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 1 muestras
+[INFO] asistencia.services: Asistencia registrada: estudiante=1 sesion=1
+------------------------------ Captured log call ------------------------------
+INFO     asistencia.services:services.py:105 Galería recargada: 1 muestras
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=1 sesion=1
+_____________________ test_e2e_flujo_completo_del_docente _____________________
+---------------------------- Captured stderr call -----------------------------
+[INFO] asistencia.services: Galería recargada: 3 muestras
+[INFO] asistencia.services: Asistencia registrada: estudiante=3 sesion=1
+[17/Nov/2026 11:30:59,678] - Broken pipe from ('127.0.0.1', 27844)
+------------------------------ Captured log call ------------------------------
+WARNING  django.request:log.py:283 Unprocessable Content: /api/estudiantes/3/muestras/
+INFO     asistencia.services:services.py:105 Galería recargada: 3 muestras
+INFO     asistencia.services:services.py:168 Asistencia registrada: estudiante=3 sesion=1
+INFO     django.server:basehttp.py:82 - Broken pipe from ('127.0.0.1', 27844)
+-------------------------- Captured stderr teardown ---------------------------
+Destroying test database for alias 'default'...
+
+- generated xml file: docs\pruebas\resultados_junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.14.7-final-0 _______________
+
+Name                                                  Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------------
+asistencia\__init__.py                                    0      0   100%
+asistencia\admin.py                                      22      0   100%
+asistencia\api.py                                        60      1    98%   76
+asistencia\apps.py                                        7      0   100%
+asistencia\forms.py                                      20      0   100%
+asistencia\management\__init__.py                         0      0   100%
+asistencia\management\commands\__init__.py                0      0   100%
+asistencia\management\commands\descargar_modelos.py      20      0   100%
+asistencia\migrations\0001_initial.py                    11      0   100%
+asistencia\migrations\0002_estudiante_cedula.py           5      0   100%
+asistencia\migrations\__init__.py                         0      0   100%
+asistencia\models.py                                     70      3    96%   37, 90, 118
+asistencia\services.py                                  143      3    98%   165-167
+asistencia\signals.py                                    22      0   100%
+asistencia\templatetags\__init__.py                       0      0   100%
+asistencia\templatetags\recursos.py                      30      1    97%   32
+asistencia\tracker.py                                    32      0   100%
+asistencia\urls.py                                        4      0   100%
+asistencia\validators.py                                 30      0   100%
+asistencia\views.py                                     134      0   100%
+vision\__init__.py                                        0      0   100%
+vision\annotator.py                                      57      2    96%   84, 92
+vision\codec.py                                          27      2    93%   28, 36
+vision\detector.py                                       42      0   100%
+vision\model_store.py                                    44      0   100%
+vision\pipeline.py                                       95      1    99%   114
+vision\preprocessing.py                                  64      1    98%   81
+vision\recognizer.py                                     53      0   100%
+-----------------------------------------------------------------------------------
+TOTAL                                                   992     14    99%
+============================ slowest 10 durations =============================
+4.35s call     tests/test_e2e_interfaz.py::test_e2e_flujo_completo_del_docente
+0.71s setup    tests/test_e2e_interfaz.py::test_e2e_rutas_protegidas_redirigen_al_login
+0.69s setup    tests/test_e2e_interfaz.py::test_e2e_flujo_completo_del_docente
+0.44s setup    tests/test_funcionales.py::test_cu03_detecta_y_reconoce_en_cada_fotograma_del_video
+0.42s call     tests/test_e2e_interfaz.py::test_e2e_rutas_protegidas_redirigen_al_login
+0.35s setup    tests/test_funcionales.py::test_cu05_el_rostro_no_registrado_se_pixela_y_el_registrado_no
+0.35s setup    tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[termico]
+0.34s setup    tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[clahe]
+0.34s setup    tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[normal]
+0.34s setup    tests/test_funcionales.py::test_cu06_cerrar_sesion_y_obtener_reporte
+=========================== short test summary info ===========================
+PASSED tests/test_django.py::test_pages_require_login[asistencia:dashboard]
+PASSED tests/test_django.py::test_pages_require_login[asistencia:monitor]
+PASSED tests/test_django.py::test_pages_require_login[asistencia:estudiantes]
+PASSED tests/test_django.py::test_pages_require_login[asistencia:sesiones]
+PASSED tests/test_django.py::test_api_returns_401_json_when_not_logged_in
+PASSED tests/test_django.py::test_login_page_renders
+PASSED tests/test_django.py::test_pages_render_for_logged_user[asistencia:dashboard]
+PASSED tests/test_django.py::test_pages_render_for_logged_user[asistencia:monitor]
+PASSED tests/test_django.py::test_pages_render_for_logged_user[asistencia:estudiantes]
+PASSED tests/test_django.py::test_pages_render_for_logged_user[asistencia:sesiones]
+PASSED tests/test_django.py::test_pages_render_for_logged_user[asistencia:estudiante_nuevo]
+PASSED tests/test_django.py::test_monitor_uses_active_session
+PASSED tests/test_django.py::test_create_student_normalizes_data_and_redirects_to_enrollment
+PASSED tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[x; DROP-10 d\xedgitos]
+PASSED tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[091234567-10 d\xedgitos]
+PASSED tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[0912345678-d\xedgito verificador]
+PASSED tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[2510034065-provincia]
+PASSED tests/test_django.py::test_create_student_rejects_invalid_ecuadorian_id[1770034065-tercer d\xedgito]
+PASSED tests/test_django.py::test_create_student_rejects_duplicate_id
+PASSED tests/test_django.py::test_student_search_filters_list
+PASSED tests/test_django.py::test_update_and_delete_student
+PASSED tests/test_django.py::test_delete_requires_post
+PASSED tests/test_django.py::test_register_sample_stores_embedding_and_image
+PASSED tests/test_django.py::test_register_sample_rejects_photo_without_face
+PASSED tests/test_django.py::test_register_sample_enforces_limit
+PASSED tests/test_django.py::test_delete_sample
+PASSED tests/test_django.py::test_process_frame_returns_annotated_image_and_faces
+PASSED tests/test_django.py::test_process_frame_without_image_returns_only_face_data
+PASSED tests/test_django.py::test_attendance_registered_after_three_consecutive_recognitions
+PASSED tests/test_django.py::test_no_attendance_without_session_or_in_closed_session
+PASSED tests/test_django.py::test_process_frame_rejects_invalid_image
+PASSED tests/test_django.py::test_process_frame_requires_frame_field
+PASSED tests/test_django.py::test_process_frame_rejects_non_numeric_session
+PASSED tests/test_django.py::test_process_frame_returns_503_when_models_missing
+PASSED tests/test_django.py::test_process_frame_hides_internal_errors
+PASSED tests/test_django.py::test_create_session_redirects_to_monitor
+PASSED tests/test_django.py::test_only_one_active_session_allowed
+PASSED tests/test_django.py::test_close_session_and_detail_stats
+PASSED tests/test_django.py::test_csv_export_marks_present_and_absent_and_escapes_formulas
+PASSED tests/test_django.py::test_gallery_cache_reloads_when_samples_change
+PASSED tests/test_django.py::test_pages_version_js_modules_and_css_to_avoid_stale_cache
+PASSED tests/test_funcionales.py::test_cu01_docente_inicia_sesion_y_ve_el_panel
+PASSED tests/test_funcionales.py::test_cu01_credenciales_incorrectas_no_permiten_ingresar
+PASSED tests/test_funcionales.py::test_cu02_registrar_estudiante_y_sus_fotos
+PASSED tests/test_funcionales.py::test_cu02_rechaza_fotos_sin_rostro_o_con_dos_personas
+PASSED tests/test_funcionales.py::test_cu03_detecta_y_reconoce_en_cada_fotograma_del_video
+PASSED tests/test_funcionales.py::test_cu03_galeria_vacia_avisa_que_no_hay_estudiantes
+PASSED tests/test_funcionales.py::test_cu04_registra_asistencia_solo_del_estudiante_registrado
+PASSED tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[normal]
+PASSED tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[gris]
+PASSED tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[bordes]
+PASSED tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[termico]
+PASSED tests/test_funcionales.py::test_cu05_cada_filtro_devuelve_el_video_procesado[clahe]
+PASSED tests/test_funcionales.py::test_cu05_el_rostro_no_registrado_se_pixela_y_el_registrado_no
+PASSED tests/test_funcionales.py::test_cu05_con_poca_luz_aplica_clahe_y_sigue_reconociendo
+PASSED tests/test_funcionales.py::test_cu06_cerrar_sesion_y_obtener_reporte
+PASSED tests/test_regresiones.py::test_attendance_retried_after_transient_failure
+PASSED tests/test_regresiones.py::test_gallery_notices_activation_swap_and_name_change
+PASSED tests/test_regresiones.py::test_deleting_student_removes_biometric_files
+PASSED tests/test_regresiones.py::test_database_allows_only_one_active_session
+PASSED tests/test_regresiones.py::test_closing_session_forgets_tracker_streaks
+PASSED tests/test_regresiones.py::test_singleton_is_created_once_under_concurrency
+PASSED tests/test_regresiones.py::test_frame_helper_is_reusable
+PASSED tests/test_e2e_interfaz.py::test_e2e_rutas_protegidas_redirigen_al_login
+PASSED tests/test_e2e_interfaz.py::test_e2e_flujo_completo_del_docente
+PASSED tests/test_model_store.py::test_sha256_of_matches_hashlib
+PASSED tests/test_model_store.py::test_download_installs_model_when_hash_matches
+PASSED tests/test_model_store.py::test_download_rejects_tampered_file_and_cleans_up
+PASSED tests/test_model_store.py::test_download_reports_network_errors
+PASSED tests/test_model_store.py::test_corrupt_or_missing_model_is_not_valid
+PASSED tests/test_model_store.py::test_require_model_returns_existing_path
+PASSED tests/test_model_store.py::test_command_skips_models_already_installed
+PASSED tests/test_model_store.py::test_command_downloads_missing_models
+PASSED tests/test_model_store.py::test_command_fails_with_clear_message
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[1710034065]
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[0912345675]
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[0102030400]
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[2401234568]
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[3001234560]
+PASSED tests/test_validators.py::test_valid_ecuadorian_ids_are_accepted[ 091234567-5 ]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[-longitud]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[123-longitud]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[17100340651-longitud]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[17100340AB-longitud]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[\u0661\u0667\u0661\u0660\u0660\u0663\u0664\u0660\u0666\u0665-longitud]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[0010034065-provincia]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[2510034065-provincia]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[2910034065-provincia]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[1760034065-tercer_digito]
+PASSED tests/test_validators.py::test_invalid_ecuadorian_ids_are_rejected_with_reason[1710034064-verificador]
+PASSED tests/test_validators.py::test_check_digit_algorithm
+PASSED tests/test_validators.py::test_normalization_removes_spaces_and_hyphens
+PASSED tests/test_vision_models.py::test_downloaded_models_match_sha256
+PASSED tests/test_vision_models.py::test_blank_frame_has_no_faces
+PASSED tests/test_vision_models.py::test_enrollment_without_face_is_rejected
+PASSED tests/test_vision_models.py::test_sface_produces_normalized_128d_embedding
+PASSED tests/test_vision_models.py::test_require_model_reports_missing_file
+PASSED tests/test_vision_models.py::test_yunet_detects_single_face_with_five_landmarks
+PASSED tests/test_vision_models.py::test_yunet_sorts_faces_from_largest_to_smallest
+PASSED tests/test_vision_models.py::test_min_face_size_discards_distant_faces
+PASSED tests/test_vision_models.py::test_sface_distinguishes_same_person_from_another
+PASSED tests/test_vision_unit.py::test_decode_valid_jpeg_returns_bgr_matrix
+PASSED tests/test_vision_unit.py::test_decode_rejects_empty_or_corrupt_data[]
+PASSED tests/test_vision_unit.py::test_decode_rejects_empty_or_corrupt_data[no-es-una-imagen]
+PASSED tests/test_vision_unit.py::test_decode_rejects_oversized_payload
+PASSED tests/test_vision_unit.py::test_data_url_has_jpeg_prefix
+PASSED tests/test_vision_unit.py::test_dark_image_is_detected_as_low_light_and_enhanced
+PASSED tests/test_vision_unit.py::test_resize_keeps_small_images_and_shrinks_large_ones
+PASSED tests/test_vision_unit.py::test_blurry_face_fails_quality_check
+PASSED tests/test_vision_unit.py::test_sharp_well_lit_face_passes_quality_check
+PASSED tests/test_vision_unit.py::test_dark_face_fails_quality_check
+PASSED tests/test_vision_unit.py::test_empty_face_fails_quality_check
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[normal]
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[clahe]
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[gris]
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[bordes]
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[termico]
+PASSED tests/test_vision_unit.py::test_every_view_filter_returns_bgr_image_of_same_size[inexistente]
+PASSED tests/test_vision_unit.py::test_match_returns_unknown_for_empty_gallery
+PASSED tests/test_vision_unit.py::test_match_finds_closest_identity_above_threshold
+PASSED tests/test_vision_unit.py::test_match_rejects_stranger_below_threshold
+PASSED tests/test_vision_unit.py::test_embedding_bytes_roundtrip
+PASSED tests/test_vision_unit.py::test_from_bytes_rejects_wrong_dimension
+PASSED tests/test_vision_unit.py::test_crop_stays_inside_image
+PASSED tests/test_vision_unit.py::test_detection_row_is_clipped_to_frame
+PASSED tests/test_vision_unit.py::test_render_draws_annotations_and_pixelates_unknown_faces
+PASSED tests/test_vision_unit.py::test_ascii_label_replaces_accents
+PASSED tests/test_vision_unit.py::test_tracker_confirms_after_required_consecutive_hits
+PASSED tests/test_vision_unit.py::test_tracker_resets_streak_after_window_expires
+PASSED tests/test_vision_unit.py::test_tracker_keeps_sessions_independent_and_can_forget
+PASSED tests/test_vision_unit.py::test_tracker_rejects_invalid_configuration
+PASSED tests/test_vision_unit.py::test_unknown_faces_are_always_pixelated_and_known_faces_stay_visible
+============================ 132 passed in 23.14s =============================

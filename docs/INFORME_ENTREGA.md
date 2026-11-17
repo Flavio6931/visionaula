@@ -48,7 +48,7 @@ _(Insertar: login, panel, registro de rostro, monitor reconociendo, detalle de s
 | Entregable | Enlace |
 |---|---|
 | Video demostrativo (Google Drive, ≤ 3 min, permiso de visualización) | https://drive.google.com/________ |
-| Repositorio GitHub (incluye README.md y requirements.txt, sin entorno virtual) | https://github.com/________/visionaula |
+| Repositorio GitHub (incluye README.md y requirements.txt, sin entorno virtual) | https://github.com/Flavio6931/visionaula |
 
 ## 7. Conclusiones
 
