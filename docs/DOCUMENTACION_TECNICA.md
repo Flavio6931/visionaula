@@ -21,8 +21,8 @@ Sistema web de control de asistencia con reconocimiento facial en tiempo real
 | Pillow, python-dotenv | ≥ 10.4 / ≥ 1.0 | Imágenes en Django / variables de entorno |
 | Navegador | Chrome, Edge o Firefox actuales | Interfaz y acceso a la cámara (`getUserMedia`) |
 
-**Solo para desarrollo y pruebas** (`requirements-dev.txt`): pytest, pytest-django, pytest-cov,
-Playwright y ruff.
+**Solo para desarrollo y pruebas** (`requirements-dev.txt`): pytest, pytest-django, pytest-cov y
+Playwright.
 
 ### 1.3 Requisitos funcionales implementados
 | ID | Requisito |
@@ -39,52 +39,55 @@ Playwright y ruff.
 
 ## 2. Instalación
 
+### 2.1 Clonar el repositorio e instalar las dependencias
+
 ```bash
-# 1. Clonar el repositorio
 git clone https://github.com/Flavio6931/visionaula.git
 cd visionaula
-
-# 2. Entorno virtual
 python -m venv venv
 venv\Scripts\activate            # Windows
 # source venv/bin/activate       # Linux / macOS
-
-# 3. Dependencias
 pip install -r requirements.txt
 ```
 
-4. **Base de datos.** Crear la base en PostgreSQL:
-   ```sql
-   CREATE DATABASE visionaula;
-   ```
-   Opcional: `docker compose up -d` levanta PostgreSQL 17 listo para usar.
+### 2.2 Base de datos
 
-5. **Configuración.** Copiar `.env.example` como `.env` y completar los valores:
+Crear la base en PostgreSQL:
 
-   | Variable | Descripción | Ejemplo |
-   |---|---|---|
-   | `DJANGO_DEBUG` | Modo depuración (solo desarrollo) | `True` |
-   | `DJANGO_SECRET_KEY` | Clave secreta de Django (obligatoria si `DEBUG=False`) | *generada* |
-   | `DJANGO_ALLOWED_HOSTS` | Dominios permitidos | `localhost,127.0.0.1` |
-   | `DB_ENGINE` | `postgresql` (requerido) o `sqlite` (pruebas rápidas) | `postgresql` |
-   | `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT` | Conexión a PostgreSQL | `visionaula`, `postgres`, …, `localhost`, `5432` |
-   | `VISION_MATCH_THRESHOLD` | Similitud mínima para reconocer (0 a 1) | `0.40` |
-   | `VISION_DETECTION_SCORE` | Confianza mínima de YuNet | `0.80` |
-   | `VISION_MIN_FACE_SIZE` | Tamaño mínimo del rostro en píxeles | `40` |
-   | `VISION_CONFIRM_FRAMES` / `VISION_CONFIRM_WINDOW_SECONDS` | Reconocimientos seguidos y ventana de tiempo para registrar asistencia | `3` / `4` |
-   | `VISION_MAX_SAMPLES` | Fotos máximas por estudiante | `10` |
+```sql
+CREATE DATABASE visionaula;
+```
 
-   Generar la clave secreta:
-   ```bash
-   python -c "from django.core.management.utils import get_random_secret_key as g; print(g())"
-   ```
+### 2.3 Configuración
 
-6. **Migraciones, modelos de OpenCV y usuario docente:**
-   ```bash
-   python manage.py migrate
-   python manage.py descargar_modelos     # YuNet y SFace, verificados con SHA-256
-   python manage.py createsuperuser
-   ```
+Copiar `.env.example` como `.env` y completar los valores:
+
+| Variable | Descripción | Ejemplo |
+|---|---|---|
+| `DJANGO_DEBUG` | Modo depuración (solo desarrollo) | `True` |
+| `DJANGO_SECRET_KEY` | Clave secreta de Django (obligatoria si `DEBUG=False`) | *generada* |
+| `DJANGO_ALLOWED_HOSTS` | Dominios permitidos | `localhost,127.0.0.1` |
+| `DB_ENGINE` | `postgresql` (requerido) o `sqlite` (pruebas rápidas) | `postgresql` |
+| `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT` | Conexión a PostgreSQL | `visionaula`, `postgres`, …, `localhost`, `5432` |
+| `VISION_MATCH_THRESHOLD` | Similitud mínima para reconocer (0 a 1) | `0.40` |
+| `VISION_DETECTION_SCORE` | Confianza mínima de YuNet | `0.80` |
+| `VISION_MIN_FACE_SIZE` | Tamaño mínimo del rostro en píxeles | `40` |
+| `VISION_CONFIRM_FRAMES` / `VISION_CONFIRM_WINDOW_SECONDS` | Reconocimientos seguidos y ventana de tiempo para registrar asistencia | `3` / `4` |
+| `VISION_MAX_SAMPLES` | Fotos máximas por estudiante | `10` |
+
+Generar la clave secreta:
+
+```bash
+python -c "from django.core.management.utils import get_random_secret_key as g; print(g())"
+```
+
+### 2.4 Migraciones, modelos de OpenCV y usuario docente
+
+```bash
+python manage.py migrate
+python manage.py descargar_modelos     # YuNet y SFace, verificados con SHA-256
+python manage.py createsuperuser
+```
 
 ## 3. Ejecución
 
@@ -137,9 +140,8 @@ visionaula/
 │   └── test_e2e_interfaz.py    E2E: navegador real con cámara simulada
 ├── docs/                       Documentación, casos de prueba y reportes
 │   └── pruebas/                Log, JUnit XML y capturas de las pruebas
-├── .github/workflows/pruebas.yml   CI: lint + pruebas sobre PostgreSQL
 ├── requirements.txt / requirements-dev.txt
-├── pytest.ini / ruff.toml / docker-compose.yml
+├── pytest.ini
 └── manage.py
 ```
 
@@ -161,6 +163,7 @@ getUserMedia → <video>
 ```
 
 **Decisiones de diseño**
+
 - **Reconocimiento por similitud coseno:** cada rostro se convierte en un vector de 128 valores;
   si la similitud con alguna muestra registrada es ≥ 0.40 se identifica al estudiante.
 - **Confirmación temporal:** se exigen 3 reconocimientos dentro de 4 s para evitar falsos positivos.
@@ -207,6 +210,3 @@ Detalle completo en
 pip install -r requirements-dev.txt
 pytest --cov=vision --cov=asistencia --cov-report=term-missing
 ```
-
-La integración continua (`.github/workflows/pruebas.yml`) ejecuta en cada *push* el linter
-(ruff), las migraciones y toda la suite contra **PostgreSQL 17**, y exige un 80 % de cobertura mínima.

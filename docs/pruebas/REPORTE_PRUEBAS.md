@@ -18,7 +18,7 @@
 | Django / OpenCV / NumPy | 6.1 / 5.0 / 2.5 |
 | Framework de pruebas | pytest 9 + pytest-django + pytest-cov |
 | Navegador E2E | Playwright 1.65 + Google Chrome 157 (cámara simulada) |
-| Base de datos | SQLite en local · **PostgreSQL 17 en GitHub Actions** (`.github/workflows/pruebas.yml`) |
+| Base de datos | SQLite en local · PostgreSQL 17 |
 | Modelos de OpenCV | YuNet 2023mar (detección) y SFace 2021dec (reconocimiento), verificados con SHA-256 |
 
 ## 2. Cómo ejecutar las pruebas
@@ -112,7 +112,7 @@ el servidor de Django en ejecución. Recorre el flujo del docente y guarda una c
 |---|---|---|---|
 | `vision/` (módulo OpenCV) | 382 | 6 | 98 % |
 | `asistencia/` (aplicación Django) | 610 | 8 | 99 % |
-| **Total** | **992** | **14** | **99 %** (mínimo exigido en CI: 80 %) |
+| **Total** | **992** | **14** | **99 %** |
 
 Las líneas sin cubrir son ramas defensivas (p. ej. fallo de `cv2.imencode`, región vacía al pixelar).
 

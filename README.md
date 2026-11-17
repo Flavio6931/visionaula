@@ -115,15 +115,15 @@ visionaula/
 
 **Reconocimiento facial**
 
-![Reconocimiento facial](docs/img/05-reconocimiento.jpg)
+![Reconocimiento facial](docs/pruebas/capturas/08-monitor-reconocimiento.png)
 
 **Panel de control**
 
-![Panel de control](docs/img/02-panel.jpg)
+![Panel de control](docs/pruebas/capturas/03-panel.png)
 
 **Detalle de una sesión**
 
-![Detalle de sesión](docs/img/06-detalle-sesion.jpg)
+![Detalle de sesión](docs/pruebas/capturas/11-detalle-sesion.png)
 
 ## Pruebas
 
